@@ -1,0 +1,111 @@
+openapi: 3.0.3
+info:
+  title: TemtoGeoPolitical Map RESTful API
+  version: 0.0.1
+servers:
+  - url: 'https://template.com'
+    description: Localhost
+security:
+  - JWT: [ ]
+tags:
+  - name: Events
+    description: Historical Political Events APIs
+
+paths:
+
+  # Events
+  /v1/events:
+    $ref: 'api/v1/event.yaml#/EventList'
+
+components:
+
+  schemas:
+
+    # OBJECTS
+    EventType:
+      $ref: 'schema/v1/event.yaml#/EventType'
+    EventTypeList:
+      $ref: 'schema/v1/event.yaml#/EventTypeList'
+    WikidataId:
+      $ref: 'schema/v1/event.yaml#/WikidataId'
+    EventName:
+      $ref: 'schema/v1/event.yaml#/EventName'
+    Region:
+      $ref: 'schema/v1/event.yaml#/Region'
+    RegionList:
+      $ref: 'schema/v1/event.yaml#/RegionList'
+    CountryCode:
+      $ref: 'schema/v1/event.yaml#/CountryCode'
+    CountryCodeList:
+      $ref: 'schema/v1/event.yaml#/CountryCodeList'
+    Country:
+      $ref: 'schema/v1/event.yaml#/Country'
+    CountryList:
+      $ref: 'schema/v1/event.yaml#/CountryList'
+    Location:
+      $ref: 'schema/v1/event.yaml#/Location'
+    LocationList:
+      $ref: 'schema/v1/event.yaml#/LocationList'
+    DateTime:
+      $ref: 'schema/v1/event.yaml#/DateTime'
+    Event:
+      $ref: 'schema/v1/event.yaml#/Event'
+    EventResponseBody:
+      $ref: 'schema/v1/event.yaml#/EventResponseBody'
+    EventListResponseBody:
+      $ref: 'schema/v1/event.yaml#/EventListResponseBody'
+
+    # ERRORS
+    ErrorObjects:
+      $ref: 'schema/v1/error.yaml#/ErrorObjects'
+    BasicErrorObject:
+      $ref: 'schema/v1/error.yaml#/BasicErrorObject'
+
+    Error400:
+      $ref: 'schema/v1/error.yaml#/Error400'
+    Error401:
+      $ref: 'schema/v1/error.yaml#/Error401'
+    Error403:
+      $ref: 'schema/v1/error.yaml#/Error403'
+    Error404:
+      $ref: 'schema/v1/error.yaml#/Error404'
+    Error409:
+      $ref: 'schema/v1/error.yaml#/Error409'
+    Error422:
+      $ref: 'schema/v1/error.yaml#/Error422'
+    Error429:
+      $ref: 'schema/v1/error.yaml#/Error429'
+
+    # PROPERTIES
+    # None
+
+  parameters:
+    Accept:
+      $ref: 'schema/v1/parameters.yaml#/Accept'
+    EventTypeListQueryParameter:
+      $ref: 'schema/v1/parameters.yaml#/EventTypeListQueryParameter'
+    EventRegionListQueryParameter:
+      $ref: 'schema/v1/parameters.yaml#/EventRegionListQueryParameter'
+    EventCountryListQueryParameter:
+      $ref: 'schema/v1/parameters.yaml#/EventCountryListQueryParameter'
+    TimeslotStartDateQueryParameter:
+      $ref: 'schema/v1/parameters.yaml#/TimeslotStartDateQueryParameter'
+    TimeslotEndDateQueryParameter:
+      $ref: 'schema/v1/parameters.yaml#/TimeslotStartDateQueryParameter'
+
+    # Path Parameters
+    # None
+
+  securitySchemes:
+
+    JWT:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Access Token
+
+    JWTRefresh:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Refresh Token

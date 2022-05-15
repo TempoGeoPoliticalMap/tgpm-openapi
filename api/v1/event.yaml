@@ -1,0 +1,34 @@
+# /v1/events:
+EventList:
+  get:
+    summary: "List of Historical Political Events."
+    tags:
+      - Events
+    parameters:
+      - $ref: '../../schema/v1/parameters.yaml#/Accept'
+      - $ref: '../../schema/v1/parameters.yaml#/EventTypeListQueryParameter'
+      - $ref: '../../schema/v1/parameters.yaml#/EventRegionListQueryParameter'
+      - $ref: '../../schema/v1/parameters.yaml#/EventCountryListQueryParameter'
+      - $ref: '../../schema/v1/parameters.yaml#/TimeslotStartDateQueryParameter'
+      - $ref: '../../schema/v1/parameters.yaml#/TimeslotEndDateQueryParameter'
+    security:
+      - JWT: [ ]
+    responses:
+      '200':
+        description: ok
+        content:
+          application/json:
+            schema:
+              $ref: '../../schema/v1/event.yaml#/EventListResponseBody'
+      '400':
+        description: Bad request
+        content:
+          application/json:
+            schema:
+              $ref: '../../schema/v1/error.yaml#/Error400'
+      403:
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../../schema/v1/error.yaml#/Error403'

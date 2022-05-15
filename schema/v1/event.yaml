@@ -1,0 +1,148 @@
+# Models
+
+EventType:
+  type: string
+  description: Type of an Event.
+  enum:
+    - elections
+    - war
+
+EventTypeList:
+  type: array
+  description: 'List of Event Types to filter Events.'
+  items:
+    $ref: '#/EventType'
+  maxItems: 1000
+
+WikidataId:
+  type: string
+  description: 'Record ID of a data item in https://www.wikidata.org.'
+  example: 'Q30638578'
+
+EventName:
+  type: string
+  description: 'Name of a historical political Event.'
+  example: '2022 French presidential election'
+
+Region:
+  type: string
+  description: World Region.
+  enum:
+    - east_asia_and_pacific
+    - europe_and_central_asia
+    - latin_america_and_caribbean
+    - middle_east_and_north_africa
+    - north_america
+    - south_asia
+    - sub_saharan_africa
+
+RegionList:
+  type: array
+  description: 'List of World Regions to filter Events.'
+  items:
+    $ref: '#/Region'
+  maxItems: 10
+
+CountryCode:
+  type: string
+  description: Country Codes.
+
+CountryCodeList:
+  type: array
+  description: 'List of Country Codes to filter Events.'
+  items:
+    $ref: '#/CountryCode'
+  maxItems: 250
+
+Country:
+  type: object
+  description: 'Information about a Country related to the Event.'
+  properties:
+    wikidata-id:
+      $ref: '#/WikidataId'
+      example: "Q142"
+    name:
+      type: string
+      example: "France"
+
+CountryList:
+  type: array
+  description: 'List of Countries related to the Event.'
+  items:
+    $ref: '#/Country'
+  maxItems: 200
+
+Location:
+  type: object
+  description: 'Information about a Location related to the Event.'
+  properties:
+    wikidata-id:
+      $ref: '#/WikidataId'
+      example: "Q90"
+    name:
+      type: string
+      example: "Paris"
+    coodrinate:
+      type: string
+      example: '48.853410,2.348800'
+
+LocationList:
+  type: array
+  description: 'List of Locations related to the Event.'
+  items:
+    $ref: '#/Location'
+  maxItems: 200
+
+DateTime:
+  type: string
+  description: 'Event timestamp; can be time or date, as well as month or year.'
+  format: date-time
+  example: "2021-01-30T08:30:00Z"
+
+Event:
+  type: object
+  description: 'Historical political Event.'
+  properties:
+    type:
+      $ref: '#/EventType'
+      example: elections
+    wikidata-id:
+      $ref: '#/WikidataId'
+    name:
+      $ref: '#/EventName'
+    countries:
+      $ref: '#/CountryList'
+    locations:
+      $ref: '#/LocationList'
+    start-time:
+      $ref: '#/DateTime'
+      example: 2022-04-10
+    end-time:
+      $ref: '#/DateTime'
+      example: 2022-04-24
+  required:
+    - type
+    - wikidata-id
+    - name
+    - countries
+    - start-time
+
+# Request Bodies
+
+
+# Response Bodies
+
+EventResponseBody:
+  type: object
+  properties:
+    data:
+      $ref: '#/Event'
+
+EventListResponseBody:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/Event'
+      maxItems: 10000

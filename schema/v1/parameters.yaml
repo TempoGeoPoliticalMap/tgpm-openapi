@@ -1,0 +1,85 @@
+# Header Parameters
+
+Accept:
+  name: Accept
+  in: header
+  description: 'Default accept header'
+  required: false
+  schema:
+    type: string
+  example: "application/json"
+
+# Query Parameters
+
+EventTypeListQueryParameter:
+  name: types
+  in: query
+  description: Type(s) of an Event:<br>
+    <ul>
+    <li>`elections` - State elections, e.g. presidential, parliament etc.</li>
+    <li>`war` - Wars or military conflicts.</li>
+    </ul>
+  required: false
+  schema:
+    $ref: 'event.yaml#/EventTypeList'
+  style: form
+  explode: false
+  example: '`?types=elections,war`'
+
+EventRegionListQueryParameter:
+  name: regions
+  in: query
+  description: World Regions.<br>
+    <ul>
+    <li>`east_asia_and_pacific`</li>
+    <li>`europe_and_central_asia`</li>
+    <li>`latin_america_and_caribbean`</li>
+    <li>`middle_east_and_north_africa`</li>
+    <li>`north_america`</li>
+    <li>`south_asia`</li>
+    <li>`sub_saharan_africa`</li>
+    </ul>
+  required: false
+  schema:
+    $ref: 'event.yaml#/RegionList'
+  style: form
+  explode: false
+  example: '`?regions=europe_and_central_asia,middle_east_and_north_africa`'
+
+EventCountryListQueryParameter:
+  name: countries
+  in: query
+  description: Country code(s) to filter Events by.
+  required: false
+  schema:
+    $ref: 'event.yaml#/CountryCodeList'
+  style: form
+  explode: false
+  example: '`?countries=fra,gbr`'
+
+TimeslotStartDateQueryParameter:
+  name: timeslot_start
+  in: query
+  description: Timeslot Start Date/Time to filter by.
+  required: false
+  schema:
+    $ref: 'event.yaml#/DateTime'
+
+TimeslotEndDateQueryParameter:
+  name: timeslot_end
+  in: query
+  description: Timeslot End Date/Time to filter by.
+  required: false
+  schema:
+    $ref: 'event.yaml#/DateTime'
+  example: "2022-05-30T18:20:00Z"
+
+# Path Parameters
+
+
+
+# Model Shared Parameters
+
+ResourceId:
+  type: string
+  example: a1
