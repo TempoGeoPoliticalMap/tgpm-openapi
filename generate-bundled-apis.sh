@@ -1,1 +1,1 @@
-swagger-cli bundle -t yaml tgpm-openapi.yaml > tgpm-openapi.bundled.yaml
+swagger-cli bundle -t yaml openapi.yaml > openapi.bundled.yaml

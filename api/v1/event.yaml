@@ -6,11 +6,15 @@ EventList:
       - Events
     parameters:
       - $ref: '../../schema/v1/parameters.yaml#/Accept'
-      - $ref: '../../schema/v1/parameters.yaml#/EventTypeListQueryParameter'
-      - $ref: '../../schema/v1/parameters.yaml#/EventRegionListQueryParameter'
-      - $ref: '../../schema/v1/parameters.yaml#/EventCountryListQueryParameter'
-      - $ref: '../../schema/v1/parameters.yaml#/TimeslotStartDateQueryParameter'
-      - $ref: '../../schema/v1/parameters.yaml#/TimeslotEndDateQueryParameter'
+    #      TODO TPGM-1 To impl filtration by type
+    #      - $ref: '../../schema/v1/parameters.yaml#/EventTypeListQueryParameter'
+    #      TODO TPGM-7 To impl filtration by Regions
+    #      - $ref: '../../schema/v1/parameters.yaml#/EventRegionListQueryParameter'
+    #      TODO TPGM-8 To impl filtration by Countries
+    #      - $ref: '../../schema/v1/parameters.yaml#/EventCountryListQueryParameter'
+    #      TODO TPGM-8 To impl filtration by Date
+    #      - $ref: '../../schema/v1/parameters.yaml#/TimeslotStartDateQueryParameter'
+    #      - $ref: '../../schema/v1/parameters.yaml#/TimeslotEndDateQueryParameter'
     security:
       - JWT: [ ]
     responses:
@@ -20,15 +24,45 @@ EventList:
           application/json:
             schema:
               $ref: '../../schema/v1/event.yaml#/EventListResponseBody'
+      'default':
+        description: Unsuccessful Operation
+        content:
+          application/json:
+            schema:
+              $ref: '../../schema/v1/error.yaml#/BasicErrorObject'
       '400':
         description: Bad request
         content:
           application/json:
             schema:
               $ref: '../../schema/v1/error.yaml#/Error400'
-      403:
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../../schema/v1/error.yaml#/Error401'
+      '403':
         description: Forbidden
         content:
           application/json:
             schema:
               $ref: '../../schema/v1/error.yaml#/Error403'
+      '404':
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '../../schema/v1/error.yaml#/Error404'
+      '406':
+        description: Not Acceptable
+        content:
+          application/json:
+            schema:
+              $ref: '../../schema/v1/error.yaml#/Error406'
+      '429':
+        description: Too Many Requests
+        content:
+          application/json:
+            schema:
+              $ref: '../../schema/v1/error.yaml#/Error429'

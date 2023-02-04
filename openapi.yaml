@@ -3,6 +3,7 @@ info:
   title: TempoGeoPolitical Map RESTful API
   version: 0.0.1
 servers:
+#  TODO TGPM-5
   - url: 'https://template.com'
     description: Localhost
 security:
@@ -56,8 +57,8 @@ components:
       $ref: 'schema/v1/event.yaml#/EventListResponseBody'
 
     # ERRORS
-    ErrorObjects:
-      $ref: 'schema/v1/error.yaml#/ErrorObjects'
+    #    ErrorObjects:
+    #      $ref: 'schema/v1/error.yaml#/ErrorObjects'
     BasicErrorObject:
       $ref: 'schema/v1/error.yaml#/BasicErrorObject'
 
@@ -69,6 +70,8 @@ components:
       $ref: 'schema/v1/error.yaml#/Error403'
     Error404:
       $ref: 'schema/v1/error.yaml#/Error404'
+    Error406:
+      $ref: 'schema/v1/error.yaml#/Error406'
     Error409:
       $ref: 'schema/v1/error.yaml#/Error409'
     Error422:
@@ -82,16 +85,20 @@ components:
   parameters:
     Accept:
       $ref: 'schema/v1/parameters.yaml#/Accept'
-    EventTypeListQueryParameter:
-      $ref: 'schema/v1/parameters.yaml#/EventTypeListQueryParameter'
-    EventRegionListQueryParameter:
-      $ref: 'schema/v1/parameters.yaml#/EventRegionListQueryParameter'
-    EventCountryListQueryParameter:
-      $ref: 'schema/v1/parameters.yaml#/EventCountryListQueryParameter'
-    TimeslotStartDateQueryParameter:
-      $ref: 'schema/v1/parameters.yaml#/TimeslotStartDateQueryParameter'
-    TimeslotEndDateQueryParameter:
-      $ref: 'schema/v1/parameters.yaml#/TimeslotStartDateQueryParameter'
+    #    TODO TPGM-1 To impl filtration by type
+    #    EventTypeListQueryParameter:
+    #      $ref: 'schema/v1/parameters.yaml#/EventTypeListQueryParameter'
+    #    TODO TPGM-7 To impl filtration by Regions
+    #    EventRegionListQueryParameter:
+    #      $ref: 'schema/v1/parameters.yaml#/EventRegionListQueryParameter'
+    #    TODO TPGM-8 To impl filtration by Countries
+    #    EventCountryListQueryParameter:
+    #      $ref: 'schema/v1/parameters.yaml#/EventCountryListQueryParameter'
+    #    TODO TPGM-8 To impl filtration by Date
+    #    TimeslotStartDateQueryParameter:
+    #      $ref: 'schema/v1/parameters.yaml#/TimeslotStartDateQueryParameter'
+    #    TimeslotEndDateQueryParameter:
+    #      $ref: 'schema/v1/parameters.yaml#/TimeslotStartDateQueryParameter'
 
     # Path Parameters
     # None

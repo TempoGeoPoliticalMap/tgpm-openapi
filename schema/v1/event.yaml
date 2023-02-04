@@ -4,8 +4,7 @@ EventType:
   type: string
   description: Type of an Event.
   enum:
-    - elections
-    - war
+    - WARFARE_AND_ARMED_CONFLICTS
 
 EventTypeList:
   type: array
@@ -17,12 +16,12 @@ EventTypeList:
 WikidataId:
   type: string
   description: 'Record ID of a data item in https://www.wikidata.org.'
-  example: 'Q30638578'
+  example: 'Q178810'
 
 EventName:
   type: string
   description: 'Name of a historical political Event.'
-  example: '2022 French presidential election'
+  example: 'Syrian Civil War'
 
 Region:
   type: string
@@ -58,12 +57,13 @@ Country:
   type: object
   description: 'Information about a Country related to the Event.'
   properties:
-    wikidata-id:
-      $ref: '#/WikidataId'
-      example: "Q142"
+    wikidataId:
+      allOf:
+        - $ref: '#/WikidataId'
+        - example: "Q858"
     name:
       type: string
-      example: "France"
+      example: "Syria"
 
 CountryList:
   type: array
@@ -76,15 +76,16 @@ Location:
   type: object
   description: 'Information about a Location related to the Event.'
   properties:
-    wikidata-id:
-      $ref: '#/WikidataId'
-      example: "Q90"
+    wikidataId:
+      allOf:
+        - $ref: '#/WikidataId'
+        - example: "Q858"
     name:
       type: string
-      example: "Paris"
+      example: "Syria"
     coodrinate:
       type: string
-      example: '48.853410,2.348800'
+      example: '39.3112722,-102.2917972'
 
 LocationList:
   type: array
@@ -96,36 +97,62 @@ LocationList:
 DateTime:
   type: string
   description: 'Event timestamp; can be time or date, as well as month or year.'
-  format: date-time
-  example: "2021-01-30T08:30:00Z"
+  format: dateTime
+#  example: "2011-03-15"
+
+EventTimeStateRelativeToNow:
+  type: string
+  description: Indicates wherether event is in past, happens now or will occur in future.
+  enum:
+    - PAST
+    - ONGOING
+    - FUTURE
 
 Event:
   type: object
   description: 'Historical political Event.'
   properties:
     type:
-      $ref: '#/EventType'
-      example: elections
-    wikidata-id:
-      $ref: '#/WikidataId'
+      allOf:
+        - $ref: '#/EventType'
+        - example: "WARFARE_AND_ARMED_CONFLICTS"
+    wikidataId:
+      allOf:
+        - $ref: '#/WikidataId'
     name:
       $ref: '#/EventName'
     countries:
-      $ref: '#/CountryList'
+      allOf:
+        - $ref: '#/CountryList'
+        - example:
+            - wikidataId: "Q858"
+              name: "Syria"
     locations:
-      $ref: '#/LocationList'
-    start-time:
-      $ref: '#/DateTime'
-      example: 2022-04-10
-    end-time:
-      $ref: '#/DateTime'
-      example: 2022-04-24
+      allOf:
+        - $ref: '#/LocationList'
+        - example:
+            - wikidataId: "Q858"
+              name: "Syria"
+              coodrinate: "39.3112722,-102.2917972"
+    timeStateRelativeToNow:
+      allOf:
+        - $ref: '#/EventTimeStateRelativeToNow'
+        - example: "ONGOING"
+    startTime:
+      allOf:
+        - $ref: '#/DateTime'
+        - example: 2011-03-15
+    endTime:
+      allOf:
+        - $ref: '#/DateTime'
+        - example: null
   required:
     - type
-    - wikidata-id
+    - wikidataId
     - name
     - countries
-    - start-time
+    - timeStateRelativeToNow
+    - startTime
 
 # Request Bodies
 

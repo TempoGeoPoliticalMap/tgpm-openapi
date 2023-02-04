@@ -1,33 +1,33 @@
-ErrorObjects:
-  type: object
-  properties:
-    errors:
-      type: array
-      items:
-        oneOf:
-          - $ref: '#/Error400'
-          - $ref: '#/Error401'
-          - $ref: '#/Error403'
-          - $ref: '#/Error404'
-          - $ref: '#/Error409'
-          - $ref: '#/Error422'
-          - $ref: '#/Error429'
-      maxItems: 1
+#ErrorObjects:
+#  type: object
+#  properties:
+#    errors:
+#      type: array
+#      items:
+#        oneOf:
+#          - $ref: '#/Error400'
+#          - $ref: '#/Error401'
+#          - $ref: '#/Error403'
+#          - $ref: '#/Error404'
+#          - $ref: '#/Error409'
+#          - $ref: '#/Error422'
+#          - $ref: '#/Error429'
+#      maxItems: 1
 
 BasicErrorObject:
   type: object
   properties:
     id:
       $ref: './parameters.yaml#/ResourceId'
-    status:
-      type: integer
-      description: The HTTP status code applicable to this problem, expressed as a string value.
+    #    status:
+    #      type: integer
+    #      description: The HTTP status code applicable to this problem, expressed as a string value.
     code:
       type: integer
       description: An application-specific error code, expressed as a string value.
-    title:
-      type: string
-      description: A short, human-readable summary of the problem.
+    #    title:
+    #      type: string
+    #      description: A short, human-readable summary of the problem.
     detail:
       type: string
       description: A human-readable explanation specific to this occurrence of the problem.
@@ -74,6 +74,16 @@ Error404:
           example: 404
         title:
           example: Not Found
+
+Error406:
+  allOf:
+    - $ref: '#/BasicErrorObject'
+    - type: object
+      properties:
+        status:
+          example: 406
+        title:
+          example: Not Acceptable
 
 Error409:
   allOf:
