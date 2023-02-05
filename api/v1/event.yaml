@@ -15,8 +15,7 @@ EventList:
     #      TODO TPGM-8 To impl filtration by Date
     #      - $ref: '../../schema/v1/parameters.yaml#/TimeslotStartDateQueryParameter'
     #      - $ref: '../../schema/v1/parameters.yaml#/TimeslotEndDateQueryParameter'
-    security:
-      - JWT: [ ]
+    security: [ ]
     responses:
       '200':
         description: ok

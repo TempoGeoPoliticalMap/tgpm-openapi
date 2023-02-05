@@ -5,8 +5,7 @@ info:
 servers:
   - url: 'https://template.com'
     description: Localhost
-security:
-  - JWT: [ ]
+security: [ ]
 tags:
   - name: Events
     description: Historical Political Events APIs
@@ -18,8 +17,7 @@ paths:
         - Events
       parameters:
         - $ref: '#/components/parameters/Accept'
-      security:
-        - JWT: [ ]
+      security: [ ]
       responses:
         '200':
           description: ok
@@ -316,15 +314,4 @@ components:
       schema:
         type: string
       example: application/json
-  securitySchemes:
-    JWT:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: Access Token
-    JWTRefresh:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: Refresh Token
 

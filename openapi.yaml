@@ -3,11 +3,11 @@ info:
   title: TempoGeoPolitical Map RESTful API
   version: 0.0.1
 servers:
-#  TODO TGPM-5
+  #  TODO TGPM-5
   - url: 'https://template.com'
     description: Localhost
-security:
-  - JWT: [ ]
+security: [ ]
+#  - JWT: [ ]
 tags:
   - name: Events
     description: Historical Political Events APIs
@@ -103,16 +103,16 @@ components:
     # Path Parameters
     # None
 
-  securitySchemes:
-
-    JWT:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: Access Token
-
-    JWTRefresh:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: Refresh Token
+#  securitySchemes:
+#
+#    JWT:
+#      type: http
+#      scheme: bearer
+#      bearerFormat: JWT
+#      description: Access Token
+#
+#    JWTRefresh:
+#      type: http
+#      scheme: bearer
+#      bearerFormat: JWT
+#      description: Refresh Token
